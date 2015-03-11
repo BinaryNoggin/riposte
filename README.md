@@ -7,7 +7,7 @@ Climate](https://codeclimate.com/github/BinaryNoggin/riposte/badges/gpa.svg)](ht
 Riposte was put together to scratch an itch that I had when working with
 multiple outcomes of telling an object what to do and then responding
 differently depending on the results of the action. This happens all the
-time in the software that I right. I want to save an object to the
+time in the software that I write. I want to save an object to the
 database and I can't because of the object not meeting the database
 requirements, or the database is down. I might have a whole host of
 different responses for the user. This is where Riposte is geared. It is
