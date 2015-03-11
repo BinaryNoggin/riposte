@@ -1,4 +1,6 @@
 # Riposte
+[![Version
+](https://img.shields.io/gem/v/riposte.svg?style=flat)](https://rubygems.org/gems/riposte)
 [![Build
 Status](https://travis-ci.org/BinaryNoggin/riposte.svg?branch=master)](https://travis-ci.org/BinaryNoggin/riposte)
 [![Code
