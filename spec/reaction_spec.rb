@@ -1,4 +1,4 @@
-require "riposte"
+require "riposte/reaction"
 
 module Riposte
   describe Reaction do
@@ -19,6 +19,10 @@ module Riposte
       called = false
       subject.response_type { called = true }
       expect(called).to be_truthy
+    end
+
+    it "is equal to another reaction with the same type" do
+      expect(subject).to eq(described_class.new(:response_type))
     end
   end
 end
