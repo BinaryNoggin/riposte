@@ -11,9 +11,7 @@ module Riposte
     end
 
     it "doesn't call a block when it isn't the response type" do
-      subject.public_send(random_method) do
-        fail "shoud have not run the block"
-      end
+      expect{ |b| subject.public_send(random_method, &b) }.not_to yield_control
     end
 
     it "calls the block when it is the response type" do
