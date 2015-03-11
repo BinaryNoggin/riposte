@@ -7,7 +7,7 @@ rvm:
   - 2.2.1
   - rbx
 
-script: 'bundle exec rake'
+script: 'CODECLIMATE_REPO_TOKEN=66c92c9cdc6ae744eab70823c420d5db97e97c6b4c404f3fee04ee21c47dc35d bundle exec rake'
 
 notifications:
   email:
