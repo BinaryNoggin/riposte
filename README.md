@@ -1,4 +1,6 @@
 # Riposte
+[![Build
+Status](https://travis-ci.org/BinaryNoggin/riposte.svg?branch=master)](https://travis-ci.org/BinaryNoggin/riposte)
 
 Riposte was put together to scratch an itch that I had when working with
 multiple outcomes of telling an object what to do and then responding
