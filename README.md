@@ -63,6 +63,42 @@ class Article < ActiveRecord::Base
 end
 ```
 
+You may prefer not to use blocks. This is powerful as you can pass the
+response object around. You can also use the object multiple times in
+different places and with different blocks.
+
+
+```ruby
+class MyController < ApplicationController
+  def create
+    @article = Article.new
+
+    on = @article.publish
+    on.published { send_email_to_subscribers }
+    on.invalid { handle_invalid }
+    on.exception { database_down_handler }
+
+    respond_with @artcile
+  end
+end
+
+class Article < ActiveRecord::Base
+  include Riposte::Helper
+
+   def publish
+     if valid?
+       #publish logic
+       react_to :published
+     else
+       #failure logic
+       react_to :invalid
+     end
+   rescue SomeError => e
+     react_to :exception
+   end
+end
+```
+
 
 ## Contributing
 
