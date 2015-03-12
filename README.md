@@ -47,7 +47,7 @@ class MyController < ApplicationController
     @article.publish { |on|
       on.published { send_email_to_subscribers }
       on.invalid { handle_invalid }
-      on.exception { database_down_handler }
+      on.exception { |e| database_down_handler(e) }
     }
 
     respond_with @artcile
@@ -66,7 +66,7 @@ class Article < ActiveRecord::Base
        react_to :invalid, &block
      end
    rescue SomeError => e
-     react_to :exception, &block
+     react_to :exception, e, &block #passing an argument for reactions
    end
 end
 ```
@@ -84,7 +84,7 @@ class MyController < ApplicationController
     on = @article.publish
     on.published { send_email_to_subscribers }
     on.invalid { handle_invalid }
-    on.exception { database_down_handler }
+    on.exception { |e| database_down_handler(e) }
 
     respond_with @artcile
   end
@@ -102,7 +102,7 @@ class Article < ActiveRecord::Base
        react_to :invalid
      end
    rescue SomeError => e
-     react_to :exception
+     react_to :exception, e, &block #passing an argument for reactions
    end
 end
 ```

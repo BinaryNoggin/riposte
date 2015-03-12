@@ -14,14 +14,38 @@ module Riposte
       expect{ |b| subject.public_send(random_method, &b) }.not_to yield_control
     end
 
-    it "calls the block when it is the response type" do
-      called = false
-      subject.response_type { called = true }
-      expect(called).to be_truthy
+    context "with no params" do
+      subject { described_class.new(:response_type) }
+
+      it "calls the block when it is the response type" do
+        expect{ |b| subject.public_send(:response_type, &b) }.to yield_control
+      end
+
+      it "is equal to another reaction with the same type" do
+        expect(subject).to eq(described_class.new(:response_type))
+      end
+
+      it "is not equal to another reaction with a different type" do
+        expect(subject).not_to eq(described_class.new(:other_type))
+      end
     end
 
-    it "is equal to another reaction with the same type" do
-      expect(subject).to eq(described_class.new(:response_type))
+    context "with params" do
+      let(:param) { double(:param) }
+      let(:param2) { double(:param2) }
+      subject { described_class.new(:response_type, param, param2) }
+
+      it "calls the block when it is the response type" do
+        expect{ |b| subject.public_send(:response_type, &b) }.to yield_with_args(param, param2)
+      end
+
+      it "is equal to another reaction with the same type" do
+        expect(subject).to eq(described_class.new(:response_type, param, param2))
+      end
+
+      it "is not equal if they have different params" do
+        expect(subject).to_not eq(described_class.new(:response_type, param2, param))
+      end
     end
   end
 end

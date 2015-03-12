@@ -1,7 +1,7 @@
 module Riposte
   module Helper
-    def react_to(type)
-      Reaction.new(type).tap { |reaction|
+    def react_to(type, *params)
+      Reaction.new(type, *params).tap { |reaction|
         yield reaction if block_given?
       }
     end
