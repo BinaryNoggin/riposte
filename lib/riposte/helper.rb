@@ -1,3 +1,5 @@
+require "riposte/reaction"
+
 module Riposte
   module Helper
     def react_to(type, *params)
